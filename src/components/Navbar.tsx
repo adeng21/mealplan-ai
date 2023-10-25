@@ -1,11 +1,29 @@
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { getUser } from "../lib/kindeAuth";
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import { LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 
 const NavBar = () => {
   const user = getUser();
+
+  const getAuthLink = () => {
+    if (user) {
+      return (
+        <LogoutLink className={buttonVariants({ size: "sm" })}>
+          {" "}
+          Log out
+        </LogoutLink>
+      );
+    } else {
+      return (
+        <RegisterLink className={buttonVariants({ size: "sm" })}>
+          {" "}
+          Sign up
+        </RegisterLink>
+      );
+    }
+  };
 
   return (
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blug-lg transition-all">
@@ -14,10 +32,7 @@ const NavBar = () => {
           <Link href="/" className="flex z-40 font-semibold">
             <span>Mealplan AI</span>
           </Link>
-          <RegisterLink className={buttonVariants({ size: "sm" })}>
-            {" "}
-            Sign up
-          </RegisterLink>
+          {getAuthLink()}
         </div>
       </MaxWidthWrapper>
     </nav>
