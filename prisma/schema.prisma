@@ -12,14 +12,13 @@ datasource db {
 }
 
 model User {
-  id               String        @id @unique
-  email            String        @unique
-  UserAllergy      UserAllergy[]
-  UserDiet         UserDiet[]
-  ServingSize      Int           @default(2)
-  viewedOnboarding Boolean       @default(false)
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
+  id          String        @id @unique
+  email       String        @unique
+  UserAllergy UserAllergy[]
+  UserDiet    UserDiet[]
+  ServingSize Int           @default(2)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 model UserAllergy {

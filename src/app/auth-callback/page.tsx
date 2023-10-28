@@ -6,8 +6,6 @@ import { db } from "@/db";
 
 const Page = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const origin = searchParams.get("origin");
   const { data, isLoading } = trpc.authCallback.useQuery(undefined, {
     onSuccess: async ({ redirectUrl }) => {
       router.push(redirectUrl);

@@ -7,7 +7,8 @@ import { db } from "@/db";
 export const appRouter = router({
     authCallback: publicProcedure.query(async()=>{
         const user = getUser()
-        let redirectUrl = '/dashboard'
+        // let redirectUrl = '/dashboard'
+        let redirectUrl = '/onboarding'
         if(!user.email ||!user.id) throw new TRPCError({ code: 'UNAUTHORIZED' })
 
         const dbUser = await db.user.findFirst({ where: ({ id: user.id }) })    

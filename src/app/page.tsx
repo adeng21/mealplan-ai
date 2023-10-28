@@ -17,7 +17,7 @@ export default function Home() {
         <Link
           className={cn(buttonVariants({ size: "lg", className: "mt-10" }))}
           target="_blank"
-          href="/dashboard"
+          href="/onboarding"
         >
           Get Started <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
