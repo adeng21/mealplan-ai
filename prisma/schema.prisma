@@ -16,13 +16,13 @@ model User {
   email       String        @unique
   UserAllergy UserAllergy[]
   UserDiet    UserDiet[]
-  ServingSize Int           @default(2)
+  servingSize Int           @default(2)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 }
 
 model UserAllergy {
-  id          String      @id @unique
+  id          String      @id @default(cuid())
   user        User        @relation(fields: [userId], references: [id])
   userId      String
   allergyType AllergyType
@@ -43,7 +43,7 @@ enum AllergyType {
 }
 
 model UserDiet {
-  id       String   @id @unique
+  id       String   @id @default(cuid())
   user     User     @relation(fields: [userId], references: [id])
   userId   String
   dietType DietType

@@ -2,9 +2,6 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { db } from "@/db";
 import { getUser } from "@/lib/kindeAuth";
 import { redirect } from "next/navigation";
-import { ALLERGY_TYPES } from "@/lib/constants";
-import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
 import OnboardingQuestions from "@/components/OnboardingQuestions";
 
 const Page = async () => {
@@ -20,6 +17,20 @@ const Page = async () => {
   if (await userNotAuthedOrCreated())
     redirect("/auth-callback?origin=onboarding");
 
+  const existingUserAllergies = await db.userAllergy.findMany({
+    where: { userId: user.id! },
+    select: { allergyType: true },
+  });
+  const existingUserDiets = await db.userDiet.findMany({
+    where: { userId: user.id! },
+    select: { dietType: true },
+  });
+
+  const existingServingSizes = await db.user.findFirst({
+    where: { id: user.id! },
+    select: { servingSize: true },
+  });
+
   return (
     <MaxWidthWrapper>
       <div className="flex items-center my-6">
@@ -27,7 +38,11 @@ const Page = async () => {
           Let's get to know your preferences...
         </h1>
       </div>
-      <OnboardingQuestions />
+      <OnboardingQuestions
+        existingAllergies={existingUserAllergies.map((a) => a.allergyType)}
+        existingDiets={existingUserDiets.map((d) => d.dietType)}
+        existingServingSizes={existingServingSizes?.servingSize}
+      />
     </MaxWidthWrapper>
   );
 };

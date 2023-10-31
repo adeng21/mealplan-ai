@@ -1,28 +1,15 @@
 
-type AllergyType = 'SHELLFISH' | 'FISH' | 'GLUTEN' | 'DAIRY' | 'PEANUT' | 'TREENUT' | 'SOY' | 'EGG' | 'SESAME' | 'NIGHTSHADE' | 'WHEAT';
-
-export const ALLERGY_TYPES: AllergyType[] = [
-    'SHELLFISH',
-    'FISH',
-    'GLUTEN',
-    'DAIRY',
-    'PEANUT',
-    'TREENUT',
-    'SOY',
-    'EGG',
-    'SESAME',
-    'NIGHTSHADE',
-    'WHEAT'
-];
-
-type DietType = 'VEGAN' | 'VEGETARIAN' | 'PESCATARIAN' | 'KETO' | 'PALEO' | 'LOW CARB';
-
-export const DIET_TYPES: DietType[] = [
-    'VEGAN',
-    'VEGETARIAN',
-    'PESCATARIAN',
-    'KETO',
-    'PALEO',
-    'LOW CARB'
-];
-
+export const SERVING_SIZES = [
+    {
+        value: 2,
+        description: 'for two, or one with leftovers',
+    },
+    {
+        value: 4,
+        description: 'for four, or two-three with leftovers'
+    },
+    {
+        value: 6,
+        description: 'for a family of 5+'
+    }
+]
